@@ -34,7 +34,6 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     syncPosts: state.posts.sort,
-    // loading: state.app.loading
   }
 };
 const mapDispatchToProps = {
