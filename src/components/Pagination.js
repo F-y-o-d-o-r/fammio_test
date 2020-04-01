@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Post from "./Post";
-import {numOfPages, toSaveNumOfPages} from "../redux/actions";
+import {toSaveNumOfPages} from "../redux/actions";
 import {Loader} from "./Loader";
 
 class Pagination extends React.Component {
@@ -26,7 +26,7 @@ class Pagination extends React.Component {
     });
   }
 
-  test(num){
+  test(num) {
     this.props.toSaveNumOfPages(num);
   }
 
@@ -40,7 +40,7 @@ class Pagination extends React.Component {
       pageNumbers.push(i);
     }
 
-    if(pageNumbers.length > 0 && currentPage > pageNumbers.length) {
+    if (pageNumbers.length > 0 && currentPage > pageNumbers.length) {
       currentPage = 1;
       document.querySelector(".page-link").classList.add('active');
     }
@@ -58,7 +58,8 @@ class Pagination extends React.Component {
 
     const renderPageNumbers = pageNumbers.map(number => {
       return (
-        <li className={"page-item page-link " + (number === 1 ? 'active' : '')} key={number} id={number} onClick={this.handleClick}>{number}</li>
+        <li className={"page-item page-link " + (number === 1 ? 'active' : '')} key={number} id={number}
+            onClick={this.handleClick}>{number}</li>
       );
     });
 
@@ -86,12 +87,8 @@ const mapStateToProps = state => {
     fetchedPosts: state.posts.fetchedPosts,
     filteredPosts: state.posts.filteredPosts,
     filtered: state.posts.filtered,
-    numOfPages: state.posts.numOfPages,
     loading: state.app.loading
   }
 };
-const mapDispatchToProps = {
-  toSaveNumOfPages
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pagination)
+export default connect(mapStateToProps, null)(Pagination)

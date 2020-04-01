@@ -12,7 +12,7 @@ function App(props) {
   });
 
   if (props.loading) {
-    return <Loader />
+    return <Loader/>
   }
 
   return (

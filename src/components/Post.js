@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ post }) => {
+export default ({post}) => {
   return (
     <div className="card mb-2">
       <div className="card-body">

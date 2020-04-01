@@ -5,7 +5,7 @@ import {
   SHOW_ALERT,
   SHOW_LOADER,
   FILTER_POSTS,
-  RESET_FILTER_POSTS, NUM_OF_PAGES
+  RESET_FILTER_POSTS
 } from './types'
 
 export function showLoader() {
@@ -39,6 +39,7 @@ export function filterPosts(user) {
     payload: user
   }
 }
+
 export function resetFilterPosts() {
   return {
     type: RESET_FILTER_POSTS,
@@ -48,12 +49,5 @@ export function resetFilterPosts() {
 export function fetchPosts() {
   return {
     type: REQUEST_POSTS
-  }
-}
-
-export function toSaveNumOfPages(num) {
-  return {
-    type: NUM_OF_PAGES,
-    payload: num
   }
 }

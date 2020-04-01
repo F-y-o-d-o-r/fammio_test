@@ -10,7 +10,7 @@ function* sagaWorker() {
   try {
     yield put(showLoader());
     const payload = yield call(fetchPosts);
-    yield put({ type: FETCH_POSTS, payload });
+    yield put({type: FETCH_POSTS, payload});
     yield put(hideLoader())
   } catch (e) {
     yield put(showAlert('Что-то пошло не так'));
