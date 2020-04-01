@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {fetchPosts} from "./redux/actions";
+import Pagination from "./components/Pagination";
+import Filters from "./components/Filters";
+import {Loader} from './components/Loader';
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.fetchPosts()
+  });
+
+  if (props.loading) {
+    return <Loader />
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container pt-3">
+      <div className="row">
+        <div className="col">
+          <h3 className="mb-3">Fammio test</h3>
+          <Filters/>
+          <br/>
+          <Pagination/>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    syncPosts: state.posts.sort,
+    // loading: state.app.loading
+  }
+};
+const mapDispatchToProps = {
+  fetchPosts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
