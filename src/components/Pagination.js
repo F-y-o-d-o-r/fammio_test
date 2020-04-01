@@ -1,15 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
 import Post from "./Post";
-import {toSaveNumOfPages} from "../redux/actions";
 import {Loader} from "./Loader";
+import {Alert} from "./Alert";
 
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: 1,
-      postsPerPage: 5
+      postsPerPage: 3
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -24,10 +24,6 @@ class Pagination extends React.Component {
     this.setState({
       currentPage: Number(event.target.id)
     });
-  }
-
-  test(num) {
-    this.props.toSaveNumOfPages(num);
   }
 
   render() {
@@ -52,7 +48,7 @@ class Pagination extends React.Component {
     const filteredPosts = this.props.filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
     let showPosts = this.props.filtered ? filteredPosts : currentPosts;
 
-    const renderPosts = showPosts.map((post, index) => {
+    const renderPosts = showPosts.map((post) => {
       return <Post key={post.id} post={post}/>
     });
 
@@ -67,13 +63,17 @@ class Pagination extends React.Component {
       return <Loader/>
     }
 
+    if(this.props.alert) {
+      return <Alert text={this.props.alert}/>
+    }
+
     return (
       <div>
         <ul className="mt-5 mb-5">
           {renderPosts}
         </ul>
         <nav>
-          <ul className="pagination pagination-lg mb-5" id="page-numbers">
+          <ul className="pagination pagination-sm mb-5" id="page-numbers">
             {renderPageNumbers}
           </ul>
         </nav>
@@ -87,7 +87,8 @@ const mapStateToProps = state => {
     fetchedPosts: state.posts.fetchedPosts,
     filteredPosts: state.posts.filteredPosts,
     filtered: state.posts.filtered,
-    loading: state.app.loading
+    loading: state.app.loading,
+    alert: state.app.alert
   }
 };
 

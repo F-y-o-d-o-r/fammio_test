@@ -1,4 +1,4 @@
-import {FETCH_POSTS, FILTER_POSTS, NUM_OF_PAGES, RESET_FILTER_POSTS} from './types'
+import {FETCH_POSTS, FILTER_POSTS, RESET_FILTER_POSTS} from './types'
 
 const initialState = {
   filtered: false,
@@ -15,7 +15,7 @@ export const postsReducer = (state = initialState, action) => {
         filtered: true,
         filteredPosts: state.fetchedPosts.filter(
           function (post) {
-            return post.userId == action.payload
+            return post.userId === +action.payload
           }
         )
       };
