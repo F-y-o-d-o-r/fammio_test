@@ -11,6 +11,8 @@ function App(props) {
     props.fetchPosts()
   });
 
+  console.log('Made with love ❤️ Fyodor - https://fyodor.pp.ua/  ❤️');
+
   if (props.loading) {
     return <Loader/>
   }

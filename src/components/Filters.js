@@ -30,7 +30,7 @@ class Filters extends React.Component {
   filterPosts(user) {
     this.props.filterPosts(user);
     let newState = this.clearFilters();
-    this.setState((state) => ({
+    this.setState(() => ({
       active: {
         ...newState,
         [user]: 'active'
@@ -41,7 +41,7 @@ class Filters extends React.Component {
   resetFilterPosts() {
     this.props.resetFilterPosts();
     let newState = this.clearFilters();
-    this.setState((state) => ({
+    this.setState(() => ({
       active: {
         ...newState,
         4: 'active'
@@ -53,8 +53,8 @@ class Filters extends React.Component {
     return (
       <React.Fragment>
         {this.props.filtered ?
-          <h1>Filtered components <span className="badge badge-secondary">{this.props.filteredPosts.length}</span>
-          </h1> : <h1>Components <span className="badge badge-secondary">{this.props.fetchedPosts.length}</span></h1>}
+          <h1>Filtered components <span className="badge badge-info">{this.props.filteredPosts.length}</span>
+          </h1> : <h1>Components <span className="badge badge-info">{this.props.fetchedPosts.length}</span></h1>}
         <div className="btn-group" role="group" aria-label="Basic example">
           <button type="button" className={"btn btn-secondary choose-filter " + this.state.active[1]}
                   onClick={() => this.filterPosts('1')}>User 1

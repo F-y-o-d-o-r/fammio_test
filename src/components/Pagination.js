@@ -47,6 +47,7 @@ class Pagination extends React.Component {
     const currentPosts = this.props.fetchedPosts.slice(indexOfFirstPost, indexOfLastPost);
     const filteredPosts = this.props.filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
     let showPosts = this.props.filtered ? filteredPosts : currentPosts;
+    let showPostsNums = showPosts.length === 1 ? indexOfFirstPost + 1 : (indexOfFirstPost + 1) + ' - ' + (indexOfFirstPost + showPosts.length);
 
     const renderPosts = showPosts.map((post) => {
       return <Post key={post.id} post={post}/>
@@ -69,7 +70,10 @@ class Pagination extends React.Component {
 
     return (
       <div>
-        <ul className="mt-5 mb-5">
+        <h4 className="mt-3">
+          Posts {showPostsNums}
+        </h4>
+        <ul className="mt-3 mb-5">
           {renderPosts}
         </ul>
         <nav>
